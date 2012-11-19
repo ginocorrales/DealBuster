@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Deal Busters</title>
+    </h:head>
+
+    <style type="text/css">
+        <!--
+        .CSSFile {
+            font-family: Georgia, "Times New Roman", Times, serif;
+            color: #FF0; background-image:url(resources/images/Background.gif); font-size: 24px;
+
+        }
+        -->
+    </style>
+    <script type="text/javascript">
+
+   function testValid(userElement)
+   {
+       
+
+
+       var emailStr = userElement.value;
+       var message = document.getElementById('userMessage');
+
+
+                var atPosition = emailStr.indexOf("@");
+                var atPosition2 = emailStr.lastIndexOf("@");
+
+
+                //validate @ signs
+
+                if (atPosition == -1)
+                {
+                    message.innerHTML = '<div style="color:red">Email not formatted correctly, must have an @ symbol</div>';
+                    return false;
+                }
+
+                if(atPosition == 0)
+                {
+                    message.innerHTML = '<div style="color:red">Email not formatted correctly, @ symbol cannot be at beginning</div>';
+                    return false;
+                }
+
+                if(atPosition2 == emailStr.length - 1)
+                {
+                    message.innerHTML = '<div style="color:red">Email not formatted correctly, @ symbol cannot be at end</div>';
+                    return false;
+                }
+
+                if(atPosition2 != atPosition) {
+                    message.innerHTML = '<div style="color:red">Email not formatted correctly, must only have one @ sign</div>';
+                    return false;
+                }
+
+
+                var firstP = emailStr.indexOf('.');
+                var lastP = emailStr.lastIndexOf('.');
+
+                //validate periods
+
+                if(firstP==-1)
+                {
+                    message.innerHTML = '<div style="color:red">Email not formatted correctly, must include at least one period</div>';
+                    return false;
+                }
+                if(firstP == 0)
+                {
+                    message.innerHTML = '<div style="color:red">Email not formatted correctly, cannot start with period</div>';
+                    return false;
+                }
+
+                if(lastP == emailStr.length -1)
+                {
+                    message.innerHTML = '<div style="color:red">Email not formatted correctly, cannot end with period</div>';
+
+                    return false;
+                }
+
+                if(firstP == atPosition + 1 ){
+                    message.innerHTML = '<div style="color:red">Email not formatted correclty, cannot have period directly after @ symbol</div>';
+
+                    return false;
+                }
+                if(firstP == atPosition - 1 ){
+
+                    message.innerHTML = '<div style="color:red">Email not formatted correclty, cannot have period directly before @ symbol</div>';
+                 // no . directly after @ symbol
+                    return false;
+                }
+
+                //validate no spaces
+                var spaces = emailStr.indexOf(" ");
+                if (spaces != -1){
+                     message.innerHTML = '<div style="color:red">Email not formatted correctly, cannot include any spaces</div>';
+                    return false;
+                }
+
+                else
+                    {
+                        message.innerHTML = '<div style="color:green">Valid Username</div>';
+                    }
+
+
+
+
+
+   }
+   function testAvail(userElement){
+       var user = userElement.value;
+       var message2 = document.getElementById('userMessage2');
+
+       if(user !='dave')
+       {
+           message2.innerHTML = '<div style="color:red">INVALIDUSERNAME</div>'
+       }else
+           {
+                 message2.innerHTML = '<div style="color:red">VALIDUSERNAME</div>'
+
+           }
+
+   }
+
+    </script>
+
+    <h:body styleClass="CSSFile" >
+        <p><img align="left" src="resources/images/DEALBUSTERStrans.gif" alt="Deal Busters" height="303" />
+            <h:form>
+                &nbsp;&nbsp;Full Name:
+                <h:inputText  id="name" value="#{LoginBean.name}" onkeyup="testAvail(this)">
+                </h:inputText>
+                <br/><br/>
+                &nbsp;&nbsp;Email:
+                <h:inputText id="email" value="#{LoginBean.email}" onkeyup="testValid(this)">
+                </h:inputText> 
+                <br/><br/>
+                &nbsp;&nbsp;Password:
+                <h:inputSecret id="password" value="#{LoginBean.password}">
+                </h:inputSecret>
+                <br/><br/>
+                &nbsp;&nbsp;Reenter Password:
+                <h:inputSecret id="cpassword" value="#{LoginBean.passwordCompare}">
+                </h:inputSecret>
+                <br/><br/>
+                &nbsp;&nbsp;Interested in:
+                <h:selectManyCheckbox id="interests" value="#{LoginBean.interests}">
+                    <f:selectItem id="itemTech" itemLabel="Technology" itemValue="tech"/>
+                    <f:selectItem id="itemMisc" itemLabel="Miscellaneous Items" itemValue="misc"/>
+                    <f:selectItem id="itemCoupon" itemLabel="Five Dollar Deals!" itemValue="coupon"/>
+                </h:selectManyCheckbox>
+                <br/><br/>&nbsp;                            <h:outputText value="#{LoginBean.error}" style="color:#ff0000"/><br/>
+
+                <h:commandButton value="Sign up" style="background-color: #DD0000; color: #FFFFFF;" id="loginbutton" action="#{LoginBean.persist()}" />            </h:form>
+        </p>
+        <p>&nbsp;</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img  align="middle" src="resources/images/firebar.gif" alt="Deal Busters" width="1157" /></p>
+    </h:body>
+</html>
+

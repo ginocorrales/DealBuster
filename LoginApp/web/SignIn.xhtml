@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Deal Busters</title>
+    </h:head>
+    <style type="text/css">
+        <!--
+        .CSSFile {
+            font-family: Georgia, "Times New Roman", Times, serif;
+            color: #FF0; background-image:url(resources/images/Background.gif); font-size: 18px;
+
+        }
+        .Links {
+            font-size: 12px;
+            color: #FF0;
+        }
+        -->
+    </style>
+
+    <h:body styleClass="CSSFile">
+      
+        <br/>
+        <h:form></h:form>
+        <img align="left" src="resources/images/DEALBUSTERStrans.gif" alt="Deal Busters" height="303" />
+        <table width="200" border="0" align="left">
+            <tr>
+                <th scope="col"><h:form>Email:
+                        <h:inputText id="userName" value="#{LoginBean.email}"> </h:inputText>
+                        <br/>
+                        <br/>
+                        Password:
+                        <h:inputSecret id="password" value="#{LoginBean.password}"> </h:inputSecret>
+                        <br/>
+                        <br/>
+                        <h:commandButton action="#{LoginBean.logIn}" value="Login" type="submit"/>
+                    </h:form>
+
+                </th>
+            </tr>
+        </table>
+        <table width="200" border="0">
+            <tr>
+                <th scope="col"><h:form>
+                        <p>create a new account</p>
+                        <p>all it takes is an Email and password</p>
+                        <h:commandButton value="Sign Up" action="SignUp.xhtml"/>
+                    </h:form>
+                </th>
+            </tr>
+        </table>
+        <p class="CSSFile">&nbsp;</p>
+        <p>&nbsp;</p>
+    </h:body>
+</html>
+

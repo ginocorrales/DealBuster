@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>DEALBUSTERS account page</title>
+    </head>
+        <style type="text/css">
+        <!--
+        .CSSFile {
+            font-family: Georgia, "Times New Roman", Times, serif;
+            color: #FF0; background-image:url(resources/images/Background.gif); font-size: 24px;
+
+        }
+        -->
+    </style>
+    <h:body styleClass="CSSFile" >
+        <img align="left" src="resources/images/DEALBUSTERStrans.gif" alt="Deal Busters" height="303" />
+            <h3>Account Page</h3>
+
+            <table><td>
+            <h:form>
+           &nbsp;&nbsp;Full Name:
+                <h:outputText  id="name" value="#{LoginBean.name}"  >
+                </h:outputText>
+                <br/><br/>
+                &nbsp;&nbsp;Email:
+                <h:outputText id="email" value="#{LoginBean.email}" >
+                </h:outputText>
+                <br/><br/>
+                &nbsp;&nbsp;Password:
+                <h:inputSecret id="password" value="#{LoginBean.password}">
+                </h:inputSecret>
+                <br/><br/>
+                &nbsp;&nbsp;Reenter Password:
+                <h:inputSecret id="cpassword" value="#{LoginBean.passwordCompare}">
+                </h:inputSecret>
+                <br/><br/>
+                &nbsp;&nbsp;Interested in:
+                <h:selectManyCheckbox id="interests" value="#{LoginBean.interests}">
+                    <f:selectItem id="itemTech" itemLabel="Technology" itemValue="tech"/>
+                    <f:selectItem id="itemMisc" itemLabel="Miscellaneous Items" itemValue="misc"/>
+                    <f:selectItem id="itemCoupon" itemLabel="Five Dollar Deals!" itemValue="coupon"/>
+                </h:selectManyCheckbox>
+                &nbsp;                            <h:outputText value="#{LoginBean.error}" style="color:#ff0000"/><br/>
+
+                <h:commandButton value="Update Information" style="background-color: #DD0000; color: #FFFFFF;" id="loginbutton" action="#{LoginBean.update()}" />
+                </h:form>
+                </td></table>
+
+
+
+
+    </h:body>
+</html>

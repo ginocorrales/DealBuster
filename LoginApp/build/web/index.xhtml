@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Deal Busters</title>
+    </h:head>
+
+    <style type="text/css">
+        <!--
+        .CSSFile {
+            font-family: Georgia, "Times New Roman", Times, serif;
+            color: #FF0; background-image:url(resources/images/Background.gif); font-size: 24px;
+
+        }
+        .Links {
+            font-size: 12px;
+            color: #FF0;
+        }
+        -->
+    </style>
+
+    <script type="text/javascript">
+            function add(){
+                var answer= confirm("Add to cart?");
+            if (answer){
+                    alert("Added to Cart!")
+
+            }
+	
+
+            }
+
+
+    </script>
+
+    <h:body styleClass="CSSFile" >
+        <table width="300" border="0" align="right" >
+            <tr align="right">
+                <th scope="col">
+                    <c:if test="${LoginBean.logged=='false'}">
+                        <h:panelGroup layout="block"><h:form><h:commandLink styleClass="Links" value="Sign Up" action="SignUp.xhtml"/>|<h:commandLink styleClass="Links" value="Log In" action="SignIn.xhtml"/>
+                            </h:form></h:panelGroup></c:if>
+                    <c:if test="${LoginBean.logged=='true'}">
+                        <h:panelGroup layout="block"><h:form><h:commandLink styleClass="Links" value="#{LoginBean.email}" action="Account.xhtml"/>|<h:commandLink styleClass="Links" value="Log Out" action="#{LoginBean.logOut}"/>
+                            </h:form></h:panelGroup></c:if>
+                </th>
+            </tr>
+        </table> 
+        <p>
+            <h:form>
+
+                <img align="left" src="resources/images/DEALBUSTERStrans.gif" alt="Deal Busters" height="303" />
+                <h3><h:outputText value="#{LoginBean.updateMessage}" style="color:#ff0000"/><br/>
+                    <table>  <tr><td><center><u>Deal of the Day:</u></center></td></tr>
+                        <tr><td><h:graphicImage value="resources/images/#{DealBean.pic}"/><br/></td>
+
+                            <td><h:outputText id="result" escape="false" value="#{DealBean.response}"/><br/>
+
+                                <h:commandButton value="View Cart" action="#{CartBean.goToCart}"/>
+                                <h:commandButton id="Purchase" value="GRAB IT WHILE IT'S HOT" action="#{CartBean.buyItem}"/>
+                            </td></tr>
+                    </table>
+                </h3>
+
+            </h:form>
+        </p>
+        <p>&nbsp;</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/><br/><br/><img  align="middle" src="resources/images/firebar.gif" alt="Deal Busters" width="1157" /></p>
+    </h:body>
+</html>
+
